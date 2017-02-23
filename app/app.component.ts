@@ -1,10 +1,7 @@
 import { Component } from '@angular/core';
 
-const todos = [
-    { title: 'Learn JS', completed: true },
-    { title: 'Learn Angular 2', completed: false },
-    { title: 'Write app', completed: false }
-];
+import { Todo } from './shared/todo';
+import { todos } from './shared/data';
 
 @Component({
     moduleId: module.id,
@@ -13,17 +10,11 @@ const todos = [
     styleUrls: ['app.component.css']
 })
 export class AppComponent {
-    title = 'Angular 2Do';
-    todos = todos;
+    title: string = 'Angular 2Do';
+    todos: Todo[] = todos;
 
-    toggle(todo: any) {console.log('toggle', todo);
-        todo.completed = !todo.completed;
-    }
-
-    delete(todo: any) {
-        let index = this.todos.indexOf(todo);
-        if (index > -1) {
-            this.todos.splice(index, 1);
-        }
+    create(title: string) {
+        const todo = new Todo(title);
+        this.todos.push(todo);
     }
 }
